@@ -3,7 +3,7 @@
     <div>
       <Nav />
     </div>
-    <div class="body uk-container">
+    <div class="body">
       <router-view></router-view>
     </div>
   </div>

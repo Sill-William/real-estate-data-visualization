@@ -1,8 +1,10 @@
 <template>
-  <div class="map-container">
+
+  <div class="map-container uk-container">
     <remote-script src="https://map.qq.com/api/gljs?v=1.exp&key=2YKBZ-SVEWA-QL5KF-CHNTT-YBXAT-36FOZ" />
     <div id="main-map"></div>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -26,9 +28,9 @@ export default {
     }
   },
   data() {
-    
+
     return {
-      
+
     }
   },
   methods: {
@@ -43,7 +45,6 @@ export default {
       }
     },
     initMap() {
-
       var center = new TMap.LatLng(45.773816, 126.618839)
       map = new TMap.Map(document.getElementById('main-map'), {
         center: center,  // 设置地图中心点坐标
@@ -78,6 +79,7 @@ export default {
 .map-container {
   height: @mheight;
   width: @mwidth;
+  // margin: 0;
 }
 
 #main-map {
