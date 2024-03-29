@@ -6,7 +6,7 @@
         @change="changeIndicesViews({ city: $event?.toString() })" class="buttons-select"></Select>
       <Select :options="type_options" v-model:value="data_query_conditional.type"
         @change="changeIndicesViews({ type: $event ? 1 : 0 })" class="buttons-select"></Select>
-      <RangePicker v-model:value="data_query_conditional.date_range" :placeholder="['开始日期', '结束日期']" />
+      <RangePicker v-model:value="data_query_conditional.date_range" :placeholder="['开始日期', '结束日期']" @change="changeIndicesViews({}, true)" />
     </div>
     <div></div>
     <div id="price-indices-main"></div>

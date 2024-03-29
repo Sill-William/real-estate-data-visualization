@@ -3,7 +3,7 @@
     <div class="main-title">
       <h1>网裕数据库</h1>
     </div>
-    <div class="main-text">
+    <!-- <div class="main-text">
       覆盖黑龙江省 <br />
       2015年开始自动更新。<br />
       <br />
@@ -13,18 +13,17 @@
       网裕数据库2015年开始建设数据生态系统，形成了数据多渠道汇集、自动加工融合、高效率管理应用，
       通过应用服务用户并获得业务交互、需求关注、问题反馈等数据，促进数据汇集动力和质量提升改善。
       禧泰数据库内容覆盖全国所有城镇、维度多样、自动与市场同步更新，具有全新准的特点。<br />
+    </div> -->
+    <div class="data-count-show-panel">
+      当前数据库中数据总数<br />
+      <span >{{ dataCount }}</span>
     </div>
     <Divider />
     <div>
       <div class="main-table-title">网裕全国数据库</div>
 
-      <table
-        class="uk-table uk-table-divider uk-table-striped"
-        cellpadding="0"
-        cellspacing="0"
-        unselectable="yes"
-        style="width: 100%; background-color: #fff"
-      >
+      <table class="uk-table uk-table-divider uk-table-striped" cellpadding="0" cellspacing="0" unselectable="yes"
+        style="width: 100%; background-color: #fff">
         <colgroup>
           <col width="78" />
           <col class="tleft" width="117" />
@@ -36,14 +35,12 @@
         </colgroup>
         <thead class="resizable"></thead>
         <tbody class="default" style="font-size: 14px">
-          <tr
-            style="
+          <tr style="
               height: 31px;
               font-weight: bold;
               font-size: 14px;
               background: #f6f6f6;
-            "
-          >
+            ">
             <td colspan="1" rowspan="1">
               <div>
                 城市要素
@@ -1632,8 +1629,15 @@ export default {
     Divider,
   },
   data() {
-    return {};
+    return {
+      dataCount: 2681504832,
+    };
   },
+  mounted() {
+    setInterval(() => {
+      this.dataCount += 10
+    }, 5000)
+  }
 };
 </script>
 
@@ -1654,5 +1658,18 @@ export default {
   font-size: 30px;
   color: black;
   font-weight: bold;
+}
+
+.data-count-show-panel {
+  background-color: lightgray;
+  margin: @standard-margin 0;
+  padding: @standard-margin;
+  font-size: 26px;
+  text-align: center;
+}
+
+.data-count-show-panel span {
+  font-weight: bold;
+  color: black;
 }
 </style>

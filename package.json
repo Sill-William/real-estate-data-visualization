@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.5",
     "@types/mockjs": "^1.0.10",
     "ant-design-vue": "4.x",
     "dayjs": "^1.11.10",

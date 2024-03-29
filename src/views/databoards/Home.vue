@@ -185,7 +185,7 @@ export default {
 }
 
 .main-map-search {
-  position: fixed;
+  position: absolute;
   top: 80px;
   padding: @base-margin @base-margin;
   z-index: 999;
