@@ -70,7 +70,7 @@
             <span>It's not just data,</span>
             <span>it's wy data.</span>
           </div>
-          <Menu mode="horizontal" class="inner-menu" :items="menu_items" @click="handleClick" />
+          <Menu v-model:selectedKeys="current_page" mode="horizontal" class="inner-menu" :items="menu_items" @click="handleClick" />
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@ export default {
       }
     ]
     return {
-      current_page: '',
+      current_page: ['home'],
       menu_items,
     }
   },
