@@ -80,8 +80,8 @@ export default {
     },
     initIndicesViews() {
 
-      chartDom = document.getElementById('price-indices-main');
-      myChart = echarts.init(chartDom);
+      chartDom = document.getElementById('price-indices-main')
+      myChart = echarts.init(chartDom)
 
       options = {
         title: {

@@ -28,8 +28,8 @@
               <a>热力分析</a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/volume-price' }"><a @click="() => {}">量价分析</a></li>
-                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/housing-resource' }"><a @click="() => {}">房源热力分析</a></li>
+                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/volume-price' }"><a @click="go2('thermal-map/volume-price/')">量价分析</a></li>
+                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/housing-resource' }"><a @click="go2('thermal-map/housing-resource/')">房源热力分析</a></li>
                 </ul>
               </div>
             </li>
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.navbar li a {
+.navbar > li > a {
   font-size: 1.2rem;
 }
 

@@ -42,5 +42,6 @@ export default {
 .body {
   flex: 1;
   max-height: 100%;
+  overflow-y: scroll;
 }
 </style>
