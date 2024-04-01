@@ -1,80 +1,17 @@
-  <template>
-  <nav class="uk-navbar-container">
-    <div class="uk-container">
-      <div uk-navbar class="main-bar">
-        <div class="uk-navbar-left navbar-left">
-          <a class="uk-navbar-item uk-logo" @click="go2('')" style="font: 1.8rem sans-serif;">
-            <img src="/favicon.ico" style="width: 36px; " />
-            WY·Data
-          </a>
-          <!-- <div>
-            <span class="navbar-tagline">
-            It's not just data,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it's wy data.
-          </span>
-          </div> -->
-
-        </div>
-        <!-- <div class="uk-navbar-center">
-          <span class="navbar-tagline">
-            It's not just data,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it's wy data.
-          </span>
-        </div> -->
-        <!-- <div class="uk-navbar-right navbar-right">
-          <span class="navbar-tagline">
-            It's not just data,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it's wy data.
-          </span>
-          <ul class="uk-navbar-nav navbar">
-            <li :class="{ 'uk-active': current_page === '/databoard/' }"><a @click="go2('')">
-                <HomeOutlined />首页
-              </a></li>
-            <li><a @click="() => { }">
-                <AccountBookOutlined />自动估值
-              </a></li>
-            <li :class="{ 'uk-active': current_page === '/databoard/price-indices' }"><a @click="go2('price-indices')">
-                <LineChartOutlined />价格指数
-              </a></li>
-            <li>
-              <a>
-                <PieChartOutlined />热力分析
-              </a>
-              <div class="uk-navbar-dropdown">
-                <ul class="uk-nav uk-navbar-dropdown-nav">
-                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/volume-price' }"><a
-                      @click="go2('thermal-map/volume-price/')">量价分析</a></li>
-                  <li :class="{ 'uk-active': current_page === '/databoard/thermal-map/housing-resource' }"><a
-                      @click="go2('thermal-map/housing-resource/')">房源热力分析</a></li>
-                </ul>
-              </div>
-            </li>
-            <li><a @click="() => { }">
-                <AuditOutlined />分析报告
-              </a></li>
-            <li><a @click="go2('datasets')"><DatabaseOutlined />网裕数据库</a></li>
-          </ul>
-        </div> -->
-        <div class="uk-navbar-right navbar-right">
-          <!-- <Menu mode="horizontal" class="inner-menu" >
-            <MenuItem v-for="item in menu_items" :key="item.key" :item="item" :icon="item.icon" :children="item.children ? item.children : []">
-              {{ item.label }}
-            </MenuItem>
-          </Menu> -->
-          <!-- <span class="navbar-tagline">
-            It's not just data,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it's wy
-            data.
-          </span> -->
-          <div class="navbar-tagline">
-            <span>It's not just data,</span>
-            <span>it's wy data.</span>
-          </div>
-          <Menu v-model:selectedKeys="current_page" mode="horizontal" class="inner-menu" :items="menu_items" @click="handleClick" />
-        </div>
-      </div>
+<template>
+  <div class="nav">
+    <div class="logo-title">
+      <img src="/favicon.ico" style="width: 36px; height: 36px;" />
+      <span>WY·Data</span>
     </div>
-  </nav>
+    <div class="tagline">
+      <span>It's not just data</span>
+      <span>It's wy data.</span>
+    </div>
+    <div class="menu">
+      <Menu v-model:selectedKeys="current_page" mode="horizontal" :items="menu_items" @click="handleClick" theme="dark" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -159,18 +96,17 @@ export default {
     // },
     handleClick(e: any) {
       // console.log('click ', e)
-      this.$router.replace(`/databoard/${
-        new Map([
-          ['home', ''], 
-          ['valuation', 'auto-valuation'],
-          ['price-indices', 'price-indices'],
-          ['thermal-map', 'thermal-map'],
-          ['volume-price', 'thermal-map/volume-price'],
-          ['housing-resource', 'thermal-map/housing-resource'],
-          // ['report', 'report'],
-          ['datasets', 'datasets'],
-        ]).get(e.key)
-      }`)
+      this.$router.replace(`/databoard/${new Map([
+        ['home', ''],
+        ['valuation', 'auto-valuation'],
+        ['price-indices', 'price-indices'],
+        ['thermal-map', 'thermal-map'],
+        ['volume-price', 'thermal-map/volume-price'],
+        ['housing-resource', 'thermal-map/housing-resource'],
+        ['report', 'analysis-reports'],
+        ['datasets', 'datasets'],
+      ]).get(e.key)
+        }`)
     }
   },
   watch: {
@@ -185,62 +121,70 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.navbar>li>a {
-  font-size: 1.2rem;
-}
+@standard-margin: 8px;
 
-.navbar-left {
-  // flex: 1;
+.nav {
   display: flex;
-  // justify-content: space-around;
-}
-
-.navbar-left div {
-  margin-inline: auto 20%;
-}
-
-.inner-menu {
-  background-color: rgb(248, 248, 248);
   height: 100%;
-  justify-content: center;
+}
+
+.logo-title {
+  display: flex;
   align-items: center;
-  font-size: large;
+
+  span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-inline-start: @standard-margin;
+  }
+}
+
+.tagline {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  margin-inline: @standard-margin;
+  // flex: 1;
+  width: 250px;
+
+  span {
+    line-height: 100%;
+    font-size: 1.3rem;
+    text-align: start;
+  }
+
+  span:last-child {
+    text-align: end;
+  }
+}
+
+.menu {
   margin-inline-start: auto;
 }
 
-.main-bar {
-  justify-content: space-between;
-  display: flex;
-}
-
-.navbar-tagline {
-  // text-align: center;
-  font-size: larger;
-  // padding-inline-end: 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-inline: 20px;
-}
-
-.navbar-tagline :nth-child(1) {
-  vertical-align: bottom;
-}
-
-.navbar-tagline :nth-child(2) {
-  // padding-inline: 20%;
-  text-align: right;
-  vertical-align: top;
-}
-
-.navbar-right {
-  margin: 0;
-  flex: 1;
-}
-
-@media (max-width: 1050px) {
-  .navbar-tagline {
+@media (max-width: 1170px) {
+  .tagline {
     display: none;
   }
 }
+
+@media (max-width: 900px) {
+  .logo-title {
+    span {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 805px) {
+  .logo-title {
+    img {
+      display: none;
+    }
+  }
+}
+
 </style>

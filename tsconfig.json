@@ -7,5 +7,11 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    // 允许ES6, 解决装饰器报错
+    "target": "ES6", 
+  }
 }

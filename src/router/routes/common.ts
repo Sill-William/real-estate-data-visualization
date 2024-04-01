@@ -37,6 +37,12 @@ export const commonRoutes: RouteRecordRaw[] = [
     component: () => import("@/views/databoards/ThermalMap.vue"),
   },
   {
+    // -- 分析报告
+    path: "analysis-reports/",
+    name: "DataBoard-AnalysisReports",
+    component: () => import("@/views/databoards/AnalysisReports.vue")
+  },
+  {
     // -- 数据看板
     path: "datasets/",
     name: "DataBoard-Datasets",

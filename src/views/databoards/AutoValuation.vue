@@ -20,28 +20,30 @@
           <FormItem name="building" label="楼栋">
             <InputGroup compact>
               <Input placeholder="楼栋" suffix="栋" style="width: 40%" v-model:value="form_state.building.build" />
-              <Input placeholder="单元" suffix="单元" style="width: 30%" v-model:value="form_state.building.unit"/>
-              <Input placeholder="户号" suffix="室" style="width: 30%" v-model:value="form_state.building.room"/>
+              <Input placeholder="单元" suffix="单元" style="width: 30%" v-model:value="form_state.building.unit" />
+              <Input placeholder="户号" suffix="室" style="width: 30%" v-model:value="form_state.building.room" />
             </InputGroup>
           </FormItem>
           </Col>
           <Col :span="12">
-          <FormItem name="floor" label="层数" :rules="[{ required: true, message: '此为必填项' }, ]">
+          <FormItem name="floor" label="层数" :rules="[{ required: true, message: '此为必填项' },]">
             <InputGroup compact>
               <Input placeholder="所在层" suffix="层" style="width: 45%" v-model:value="form_state.floor.currentFloor" />
               <Input placeholder="" value="/" style="width: 10%" disabled />
-              <Input placeholder="总层数" suffix="层" style="width: 45%" v-model:value="form_state.floor.totalFloor"/>
+              <Input placeholder="总层数" suffix="层" style="width: 45%" v-model:value="form_state.floor.totalFloor" />
             </InputGroup>
           </FormItem>
           </Col>
           <Col :span="12">
-          <FormItem name="area" label="建筑面积" :rules="[{ required: true, message: '此为必填项' }, { pattern: new RegExp(/^[\d]+$/), message: '请输入合法的数字' }]">
-            <Input placeholder="建筑面积" v-model:value="form_state.area" suffix="平方米"/>
+          <FormItem name="area" label="建筑面积"
+            :rules="[{ required: true, message: '此为必填项' }, { pattern: new RegExp(/^[\d]+$/), message: '请输入合法的数字' }]">
+            <Input placeholder="建筑面积" v-model:value="form_state.area" suffix="平方米" />
           </FormItem>
           </Col>
           <Col :span="12">
           <FormItem name="buildYear" label="建成年份">
-            <DatePicker picker="year" placeholder="建成年份" style="width: 100%;" :disabledDate="_buildYearIsVaild" v-model:value="form_state.buildYear"/>
+            <DatePicker picker="year" placeholder="建成年份" style="width: 100%;" :disabledDate="_buildYearIsVaild"
+              v-model:value="form_state.buildYear" />
           </FormItem>
           </Col>
           <Col :span="12">
@@ -146,15 +148,15 @@
         </Row>
         <Row :gutter="24">
           <Col :offset="8" :span="8" class="btn-box">
-            <Button type="primary" @click="() => valuation_modal_shown = true">估值</Button>
-            <Button >重置</Button>
+          <Button type="primary" @click="() => valuation_modal_shown = true">估值</Button>
+          <Button @click="_resetForm">重置</Button>
           </Col>
         </Row>
       </Form>
     </Card>
   </div>
 
-  <Modal v-model:open="valuation_modal_shown">
+  <Modal v-model:open="valuation_modal_shown" :closable="false">
     <Descriptions title="评估结果" :column="2">
       <DescriptionsItem :span="2">
         <Statistic title="总价（万元）" :value="109" />
@@ -193,23 +195,29 @@
         -
       </DescriptionsItem>
     </Descriptions>
+
+    <template #footer>
+      <Button @click="valuation_modal_shown = false">关闭</Button>
+    </template>
   </Modal>
 </template>
 
 <script lang="ts">
 import {
-  Card, 
-  Form, 
-  FormItem, 
-  Row, Col, 
-  Input, InputGroup, 
-  DatePicker, 
+  Card,
+  Form,
+  FormItem,
+  Row, Col,
+  Input, InputGroup,
+  DatePicker,
   Select, SelectOption,
   Button,
-  FormInstance,
   Modal,
   Descriptions, DescriptionsItem,
   Statistic
+} from 'ant-design-vue'
+import type {
+  FormInstance
 } from 'ant-design-vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { reactive, ref } from 'vue';
@@ -226,7 +234,7 @@ interface IForm {
     currentFloor: string,
     totalFloor: string,
   },
-  area: number,
+  area: number | undefined,
   buildYear: string,
   buildType: string,
   decoration: string,
@@ -274,10 +282,10 @@ export default {
       unfavorable: '',
     })
     const valuation_modal_shown = ref(false)
-    
+
     return {
       valuation_modal_shown,
-      form_ref, 
+      form_ref,
       form_state,
     }
   },
@@ -288,6 +296,28 @@ export default {
      */
     _buildYearIsVaild(date: Dayjs) {
       return date.isAfter(dayjs().endOf('year'))
+    },
+    _resetForm() {
+      this.form_state = {
+        name: '',
+        address: '',
+        building: {
+          build: '',
+          unit: '',
+          room: '',
+        },
+        floor: {
+          currentFloor: '',
+          totalFloor: '',
+        },
+        area: undefined,
+        buildYear: '',
+        buildType: '',
+        decoration: '',
+        orientation: '',
+        favorable: '',
+        unfavorable: '',
+      }
     }
   },
   mounted() { },
