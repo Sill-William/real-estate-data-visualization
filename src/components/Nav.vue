@@ -1,4 +1,4 @@
-<template>
+  <template>
   <nav class="uk-navbar-container">
     <div class="uk-container">
       <div uk-navbar class="main-bar">
@@ -80,7 +80,7 @@
 <script lang="ts">
 import { h } from 'vue'
 import { HomeOutlined, AccountBookOutlined, LineChartOutlined, PieChartOutlined, AuditOutlined, DatabaseOutlined } from '@ant-design/icons-vue'
-import { Menu, MenuItem, MenuProps } from 'ant-design-vue'
+import { Menu, MenuItem, type MenuProps } from 'ant-design-vue'
 
 export default {
   name: "Nav",

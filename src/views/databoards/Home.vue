@@ -18,10 +18,11 @@
 <script lang="ts">
 import { h, ref, type Ref } from "vue";
 import { AutoComplete } from "ant-design-vue";
+import type { BaseOptionType } from 'ant-design-vue/es/select';
 
 declare const TMap: any; // 声明腾讯地图API全局变量
 
-interface Address {
+interface Address extends BaseOptionType {
   value: string;
   id: string;
   name: string;
@@ -32,7 +33,8 @@ interface Address {
   management: string;
 }
 
-let map, markLayers;
+let map: any
+let markLayers: any
 
 export default {
   name: "Dashboard-Home",
@@ -119,6 +121,7 @@ export default {
           id: item["id"],
           styleId: "markStyle",
           position: new TMap.LatLng(
+            // @ts-ignore
             ...item["location"].match(/[\d\.]+/g).map((x) => Number(x))
           ),
         }))
@@ -130,7 +133,7 @@ export default {
         offset: { x: 0, y: -32 }, //设置信息窗相对position偏移像素，为了使其显示在Marker的上方
       });
       infoWindow.close(); //初始关闭信息窗关闭
-      markLayers.on("click", (evt) => {
+      markLayers.on("click", (evt: any) => {
         let target = this.ad_data.find((tg) => tg["id"] === evt.geometry.id);
         if (!target) throw new Error("target not found");
         //设置infoWindow
@@ -148,9 +151,10 @@ export default {
       console.info("complete import map");
     },
     onSearch(search_text: string) {},
-    onSelect(_: any, option: Address) {
+    onSelect(value: any, option: BaseOptionType) {
       // console.debug(option.location)
-      this.mapSkip(...option.location.match(/[\d\.]+/g).map(x => Number(x)))
+      // @ts-ignore
+      this.mapSkip(...(option as Address).location.match(/[\d\.]+/g).map(x => Number(x)))
     },
     mapSkip (lat: number, lng: number) {
       map.setCenter(new TMap.LatLng(lat, lng))

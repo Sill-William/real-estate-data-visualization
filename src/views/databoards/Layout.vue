@@ -1,21 +1,35 @@
 <template>
-  <div class="main">
+  <!-- <div class="main">
     <div>
       <Nav />
     </div>
     <div class="body">
       <router-view></router-view>
     </div>
+  </div> -->
+  <div>
+    <Layout class="main">
+      <LayoutHeader>
+        <Nav />
+      </LayoutHeader>
+      <LayoutContent class="body">
+        <router-view></router-view>
+      </LayoutContent>
+    </Layout>
   </div>
 </template>
 
 <script>
+import { Layout, LayoutHeader, LayoutContent } from 'ant-design-vue'
+
 import Nav from '@/components/Nav.vue'
 
 export default {
   name: 'Dashboard-Home',
   components: {
     Nav,
+
+    Layout, LayoutContent, LayoutHeader
   },
   data() {
     return { }
