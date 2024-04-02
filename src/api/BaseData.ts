@@ -3,7 +3,9 @@ import { AutoLoad } from "@/annotations/EnvLoader";
 
 // 自动加载模块
 @AutoLoad([
-  "Report", "DataCount"
+  "Report", 
+  "DataCount",
+  "HoursingResourceThermal",
 ])
 export class BaseData {
 

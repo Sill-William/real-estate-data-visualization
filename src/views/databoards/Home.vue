@@ -98,13 +98,13 @@ export default {
       };
     },
     initMap() {
-      var center = new TMap.LatLng(45.773816, 126.618839);
+      var center = new TMap.LatLng(45.773816, 126.618839)
       map = new TMap.Map(document.getElementById("main-map"), {
         center: center, // 设置地图中心点坐标
         zoom: 13.2, // 设置地图缩放级别
         pitch: 43.5, // 设置俯仰角
         rotation: 45, // 设置地图旋转角度
-      });
+      })
       markLayers = new TMap.MultiMarker({
         map: map,
         styles: {
@@ -165,7 +165,7 @@ export default {
     this.mountAPI(
       "https://map.qq.com/api/gljs?v=1.exp&key=2YKBZ-SVEWA-QL5KF-CHNTT-YBXAT-36FOZ",
       this.initMap
-    );
+    )
   },
 };
 </script>

@@ -8,13 +8,39 @@
 <script lang="ts">
 import { message } from 'ant-design-vue'
 
-declare var echarts: any
+import { BaseData } from '@/api/BaseData'
 
+declare var echarts: any
+declare var TMap: any
+
+// echarts mount
 var chartDom: any
 var myChart: any
 var options: any
 
+// tencent map mount
+let map: any
+let markLayers: any
+
 const [messageApi, contextHolder] = message.useMessage()
+
+const baseData = new BaseData()
+
+const locate_lnglat_map = new Map([
+  ['哈尔滨市', { 'lng': 126.53505, 'lat': 45.802981 }],
+  ['齐齐哈尔市', { 'lng': 123.918193, 'lat': 47.354892 }],
+  ['鸡西市', { 'lng': 130.969385, 'lat': 45.295087 }],
+  ['鹤岗市', { 'lng': 130.297687, 'lat': 47.350659 }],
+  ['双鸭山市', { 'lng': 131.141563, 'lat': 46.676157 }],
+  ['大庆市', { 'lng': 125.104078, 'lat': 46.589498 }],
+  ['伊春市', { 'lng': 128.840863, 'lat': 47.728332 }],
+  ['佳木斯市', { 'lng': 130.318916, 'lat': 46.800002 }],
+  ['七台河市', { 'lng': 131.003015, 'lat': 45.771178 }],
+  ['牡丹江市', { 'lng': 129.632928, 'lat': 44.551486 }],
+  ['黑河市', { 'lng': 127.528226, 'lat': 50.244887 }],
+  ['绥化市', { 'lng': 126.968714, 'lat': 46.654147 }],
+  ['大兴安岭地区', { 'lng': 116.341483, 'lat': 39.726917 }]
+])
 
 export default {
   name: "HousingResourceThermalMap",
@@ -188,10 +214,31 @@ export default {
     }
   },
   methods: {
+    mountAPI(url: string, callback?: Function) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = url;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        if (callback) callback();
+      };
+    },
+    escEvent(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        this.destroyCityThermalMap()
+        this.initThermalMap()
+      }
+    },
+    registerEscKeyListener() {
+      window.addEventListener("keydown", this.escEvent)
+    },
+    unregisterEscKeyListener() {
+      window.removeEventListener("keydown", this.escEvent)
+    },
     async buildMap(locate_code: string, full?: boolean): Promise<Object> {
-      let request_url = `https://geo.datav.aliyun.com/areas_v3/bound/${locate_code}${
-        full ? "_full" : ""
-      }.json`;
+      let request_url = `https://geo.datav.aliyun.com/areas_v3/bound/${locate_code}${full ? "_full" : ""
+        }.json`;
       console.debug(request_url);
       this.messageApi.loading("获取数据中");
       let fetch_results = await fetch(request_url, {
@@ -258,13 +305,40 @@ export default {
       options = await this.buildMap("230000", true)
 
       myChart.on("click", async (params: any) => {
-        
+        options = {}
+        myChart.dispose()
+        this.initCityThermalMap(params.data.name)
       })
       options && myChart.setOption(options)
-    }
+    },
+    async initCityThermalMap(locate_name: string) {
+      var thermal_points = await baseData.fetchRecords("HoursingResourceThermal");
+      console.log(thermal_points["data"])
+      var center = new TMap.LatLng(...[locate_lnglat_map.get(locate_name)?.lat, locate_lnglat_map.get(locate_name)?.lng])
+      map = new TMap.Map(document.getElementById("housing-resource-termalmap-main-view"), {
+        center: center, // 设置地图中心点坐标
+        zoom: 10, // 设置地图缩放级别
+        pitch: 43.5, // 设置俯仰角
+        rotation: 45, // 设置地图旋转角度
+      })
+      // console.log(TMap)
+      var heat = new TMap.visualization.Heat()
+      heat.setData(thermal_points["data"])
+      heat.addTo(map)
+    },
+    async destroyCityThermalMap() {
+      map.destroy()
+    },
   },
   mounted() {
+    this.mountAPI(
+      "https://map.qq.com/api/gljs?v=1.exp&key=2YKBZ-SVEWA-QL5KF-CHNTT-YBXAT-36FOZ&libraries=visualization"
+    )
     this.initThermalMap()
+    this.registerEscKeyListener()
+  },
+  beforeUnmount() {
+    this.unregisterEscKeyListener()
   }
 }
 </script>
