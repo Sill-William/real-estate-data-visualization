@@ -3,14 +3,14 @@ import { AutoLoad } from "@/annotations/EnvLoader";
 
 // 自动加载模块
 @AutoLoad([
-  "Report",
+  "Report", "DataCount"
 ])
 export class BaseData {
 
   declare to: { [key: string]: string } // 后端访问路径
 
   async fetchRecords(obj: string) {
-    console.log(this.to)
+    // console.log(this.to)
     if (Object.keys(this.to).findIndex(key => key === obj) === -1) throw new Error(`${obj} 未找到`)
 
     let results = await fetch(this.to[obj], {

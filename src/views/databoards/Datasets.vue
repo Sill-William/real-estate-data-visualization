@@ -1,4 +1,5 @@
 <template>
+  <context-holder />
   <div class="uk-container">
     <div class="main-title">
       <h1>网裕数据库</h1>
@@ -16,7 +17,9 @@
     </div> -->
     <div class="data-count-show-panel">
       当前数据库中数据总数<br />
-      <span >{{ dataCount }}</span>
+      <!-- <span >{{ dataCount }}</span> -->
+      <!-- <div v-html="dataCount"></div> -->
+      <div v-html="dataCountHtml"></div>
     </div>
     <Divider />
     <div>
@@ -1620,22 +1623,68 @@
   </div>
 </template>
 
-<script>
-import { Divider } from "ant-design-vue";
+<script lang="ts">
+import { h, ref, VNode, render } from 'vue'
+import { Divider, message } from "ant-design-vue"
+
+import type { Response } from '@/types/global'
+import { BaseData } from '@/api/BaseData'
+
+const [messageApi, contextHolder] = message.useMessage()
+
+const baseData = new BaseData()
 
 export default {
   name: "Datasets",
   components: {
     Divider,
+    contextHolder
   },
   data() {
+    const dataCount = ref<number>()
+    const dataCountHtml = ref<string>() 
     return {
-      dataCount: 2681504832,
-    };
+      dataCount,
+      dataCountHtml,
+      messageApi,
+    }
+  },
+  methods: {
+    _splitNum(num: number): number[] {
+      let res: number[] = []
+      for (; num > 10; num = Math.floor(num / 10)) res.unshift(num % 10)
+      res.unshift(num)
+      return res
+    },
+    _getCount() {
+      baseData.fetchRecords('DataCount')
+        .then((resp: Response) => {
+          // let split_num: number[] = this._splitNum(resp.data[0])
+          this.dataCount = resp.data[0]
+          console.log(this.dataCount)
+          this._divCount()
+        })
+        .catch((error: Error) => {
+          this.messageApi.error('请求后台数据失败')
+          console.error(error)
+        })
+    },
+    _divCount() {
+      let split_num: number[] = this._splitNum(this.dataCount)
+      this.dataCountHtml = split_num.map((single: number) => {
+        return `
+        <div style="display: block; background-color: #000; font-size: 42px; color: #fff; font-weight: bold; padding: 4px; width: 40px;">${single}</div>
+        `
+      }).join('')
+      console.log(this.dataCountHtml)
+    }
   },
   mounted() {
+    this._getCount()
+    this._divCount()
     setInterval(() => {
-      this.dataCount += 10
+      this.dataCount += 10;
+      this._divCount()
     }, 5000)
   }
 };
@@ -1661,15 +1710,18 @@ export default {
 }
 
 .data-count-show-panel {
-  background-color: lightgray;
+  // background-color: lightgray;
   margin: @standard-margin 0;
   padding: @standard-margin;
   font-size: 26px;
   text-align: center;
+
+  // display: flex;
 }
 
-.data-count-show-panel span {
-  font-weight: bold;
-  color: black;
+.data-count-show-panel > div {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
 }
 </style>
