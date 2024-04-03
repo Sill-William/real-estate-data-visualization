@@ -1,14 +1,5 @@
 import Mock from 'mockjs'
 
-function mockLat() {
-  return Mock.Random.float(39, 51, 4)
-}
-
-function mockLng() {
-  return Mock.Random.float(116, 132, 4)
-}
-
-
 export default [
   {
     url: '/report',
@@ -16,12 +7,115 @@ export default [
     response: () => {
       return {
         'code': 200,
-        'data|5-20': [
+        'data': [
           {
-            'id|36': '',
-            'title': '@title()',
-            'date': '@date'
-          }
+            'type': '出租',
+            'year': {
+              '2024': [
+                {
+                  'month': '1',
+                },
+                {
+                  'month': '2',
+                },
+                {
+                  'month': '3',
+                }
+              ],
+              '2023': [
+                {
+                  'month': '1',
+                },
+                {
+                  'month': '2',
+                },
+                {
+                  'month': '3',
+                },
+                {
+                  'month': '4',
+                },
+                {
+                  'month': '5',
+                },
+                {
+                  'month': '6',
+                },
+                {
+                  'month': '7',
+                },
+                {
+                  'month': '8',
+                },
+                {
+                  'month': '9',
+                },
+                {
+                  'month': '10',
+                },
+                {
+                  'month': '11',
+                },
+                {
+                  'month': '12',
+                }
+              ]
+            }
+          },
+          {
+            'type': '出售',
+            'year': {
+              '2024': [
+                {
+                  'month': '1',
+                },
+                {
+                  'month': '2',
+                },
+                {
+                  'month': '3',
+                }
+              ],
+              '2023': [
+                {
+                  'month': '1',
+                },
+                {
+                  'month': '2',
+                },
+                {
+                  'month': '3',
+                },
+                {
+                  'month': '4',
+                },
+                {
+                  'month': '5',
+                },
+                {
+                  'month': '6',
+                },
+                {
+                  'month': '7',
+                },
+                {
+                  'month': '8',
+                },
+                {
+                  'month': '9',
+                },
+                {
+                  'month': '10',
+                },
+                {
+                  'month': '11',
+                },
+                {
+                  'month': '12',
+                }
+              ]
+            }
+          },
         ]
       }
     }

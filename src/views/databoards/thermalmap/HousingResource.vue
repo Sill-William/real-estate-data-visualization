@@ -259,10 +259,10 @@ export default {
           text: "黑龙江省房屋量价热力图",
           subtext: "©️版权所有",
         },
-        tooltip: {
-          trigger: "item",
-          formatter: "{b}<br />{c}(万/套)",
-        },
+        // tooltip: {
+        //   trigger: "item",
+        //   formatter: "{b}<br />{c}(万/套)",
+        // },
         toolbox: {
           show: true,
           orient: "vertical",
@@ -318,8 +318,8 @@ export default {
       map = new TMap.Map(document.getElementById("housing-resource-termalmap-main-view"), {
         center: center, // 设置地图中心点坐标
         zoom: 10, // 设置地图缩放级别
-        pitch: 43.5, // 设置俯仰角
-        rotation: 45, // 设置地图旋转角度
+        pitch: 0, // 设置俯仰角
+        // rotation: 45, // 设置地图旋转角度
       })
       // console.log(TMap)
       var heat = new TMap.visualization.Heat()

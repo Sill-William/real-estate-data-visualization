@@ -1,5 +1,5 @@
 <template>
-  <div class="map-container uk-container">
+  <div class="map-container ">
     <!-- <remote-script src="https://map.qq.com/api/gljs?v=1.exp&key=2YKBZ-SVEWA-QL5KF-CHNTT-YBXAT-36FOZ" /> -->
     <div id="main-map"></div>
     <div class="main-map-search">

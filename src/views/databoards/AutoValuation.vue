@@ -195,7 +195,7 @@
         -
       </DescriptionsItem>
     </Descriptions>
-
+    <div class="tag"><span >评估结果根据填写信息得出，只作为价格参考，不作为价格报告。</span></div>
     <template #footer>
       <Button @click="valuation_modal_shown = false">关闭</Button>
     </template>
@@ -329,5 +329,10 @@ export default {
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+.tag {
+  width: 100%;
+  text-align: center;
+  color: red;
 }
 </style>

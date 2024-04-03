@@ -47,5 +47,17 @@ export const commonRoutes: RouteRecordRaw[] = [
     path: "datasets/",
     name: "DataBoard-Datasets",
     component: () => import("@/views/databoards/Datasets.vue"),
+  },
+  {
+    // -- 案例库
+    path: "instances-repository/",
+    name: "DataBoard-InstancesRepository",
+    component: () => import("@/views/databoards/InstancesRepository.vue"),
+  },
+  {
+    // -- 关于我们
+    path: "about/",
+    name: "About",
+    component: () => import("@/views/databoards/About.vue"),
   }
 ]

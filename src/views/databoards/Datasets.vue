@@ -1,9 +1,9 @@
 <template>
   <context-holder />
   <div class="uk-container">
-    <div class="main-title">
+    <!-- <div class="main-title">
       <h1>网裕数据库</h1>
-    </div>
+    </div> -->
     <!-- <div class="main-text">
       覆盖黑龙江省 <br />
       2015年开始自动更新。<br />
@@ -16,7 +16,7 @@
       禧泰数据库内容覆盖全国所有城镇、维度多样、自动与市场同步更新，具有全新准的特点。<br />
     </div> -->
     <div class="data-count-show-panel">
-      当前数据库中数据总数<br />
+      <span class="panel-title">当前数据库中数据总数</span><br />
       <!-- <span >{{ dataCount }}</span> -->
       <!-- <div v-html="dataCount"></div> -->
       <div v-html="dataCountHtml"></div>
@@ -88,13 +88,13 @@
             </td>
           </tr>
           <tr>
-            <td colspan="1" rowspan="7">
+            <td colspan="1" rowspan="4">
               <div>
                 区域
                 <div></div>
               </div>
             </td>
-            <td class="tleft" colspan="1" rowspan="5">
+            <td class="tleft" colspan="1" rowspan="4">
               <div>
                 行政区划
                 <div></div>
@@ -215,7 +215,7 @@
               </div>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 乡级行政区（含乡）
@@ -240,8 +240,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="2">
               <div>
                 社会管理
@@ -275,8 +275,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 功能区
@@ -301,15 +301,15 @@
                 <div></div>
               </div>
             </td>
-          </tr>
+          </tr> -->
           <tr>
-            <td colspan="1" rowspan="30">
+            <td colspan="1" rowspan="20">
               <div>
                 建筑
                 <div></div>
               </div>
             </td>
-            <td class="tleft" colspan="1" rowspan="2">
+            <!-- <td class="tleft" colspan="1" rowspan="2">
               <div>
                 土地
                 <div></div>
@@ -341,9 +341,9 @@
                 日
                 <div></div>
               </div>
-            </td>
+            </td> -->
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 土地成交信息
@@ -370,14 +370,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
-            <td class="tleft" colspan="1" rowspan="5">
-              <div>
-                住区
-                <div></div>
-              </div>
-            </td>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 村庄
@@ -404,8 +398,14 @@
                 <div></div>
               </div>
             </td>
-          </tr>
+          </tr> -->
           <tr>
+            <td class="tleft" colspan="1" rowspan="1">
+              <div>
+                住区
+                <div></div>
+              </div>
+            </td>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 居民区
@@ -454,13 +454,13 @@
                 <div></div>
               </div>
             </td>
-            <td colspan="1" rowspan="1">
+            <td colspan="2" rowspan="1">
               <div>
                 <div></div>
               </div>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 建筑物
@@ -489,8 +489,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 房屋
@@ -517,8 +517,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="3">
               <div>
                 城市配套
@@ -609,15 +609,15 @@
                 <div></div>
               </div>
             </td>
-          </tr>
+          </tr> -->
           <tr>
-            <td class="tleft" colspan="1" rowspan="5">
+            <td class="tleft" colspan="1" rowspan="4">
               <div>
                 住房交易<br />
                 <div></div>
               </div>
             </td>
-            <td class="tleft" colspan="1" rowspan="1">
+            <!-- <td class="tleft" colspan="1" rowspan="1">
               <div>
                 新楼盘报价
                 <div></div>
@@ -643,7 +643,7 @@
                 实时
                 <div></div>
               </div>
-            </td>
+            </td> -->
           </tr>
           <tr>
             <td class="tleft" colspan="1" rowspan="1">
@@ -732,7 +732,7 @@
               </div>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="1">
               <div>
                 租房成交
@@ -888,8 +888,8 @@
                 <div></div>
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="tleft" colspan="1" rowspan="3">
               <div>
                 房地产企业
@@ -1616,7 +1616,7 @@
                 <div></div>
               </div>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -1624,7 +1624,7 @@
 </template>
 
 <script lang="ts">
-import { h, ref, VNode, render } from 'vue'
+import { h, ref, render } from 'vue'
 import { Divider, message } from "ant-design-vue"
 
 import type { Response } from '@/types/global'
@@ -1670,7 +1670,7 @@ export default {
         })
     },
     _divCount() {
-      let split_num: number[] = this._splitNum(this.dataCount)
+      let split_num: number[] = this._splitNum(this.dataCount ? this.dataCount : 0)
       this.dataCountHtml = split_num.map((single: number) => {
         return `
         <div style="display: block; background-color: #000; font-size: 42px; color: #fff; font-weight: bold; padding: 4px; width: 40px;">${single}</div>
@@ -1683,6 +1683,7 @@ export default {
     this._getCount()
     this._divCount()
     setInterval(() => {
+      if (!this.dataCount) return
       this.dataCount += 10;
       this._divCount()
     }, 5000)
@@ -1694,7 +1695,8 @@ export default {
 @standard-margin: 8px;
 
 .main-title {
-  padding: @standard-margin 0;
+  // padding: @standard-margin 0;
+  padding-block-start: @standard-margin;
 }
 
 .main-text {
@@ -1711,12 +1713,16 @@ export default {
 
 .data-count-show-panel {
   // background-color: lightgray;
-  margin: @standard-margin 0;
-  padding: @standard-margin;
+  // margin: @standard-margin 0;
+  // padding: @standard-margin;
   font-size: 26px;
   text-align: center;
 
   // display: flex;
+}
+
+.panel-title {
+  font-size: medium;
 }
 
 .data-count-show-panel > div {

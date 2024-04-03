@@ -5,18 +5,19 @@
       <span>WY·Data</span>
     </div>
     <div class="tagline">
-      <span>It's not just data</span>
+      <span>It's not just data,</span>
       <span>It's wy data.</span>
     </div>
     <div class="menu">
-      <Menu v-model:selectedKeys="current_page" mode="horizontal" :items="menu_items" @click="handleClick" theme="dark" />
+      <Menu v-model:selectedKeys="current_page" mode="horizontal" :items="menu_items" @click="handleClick"
+        theme="dark" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { h } from 'vue'
-import { HomeOutlined, AccountBookOutlined, LineChartOutlined, PieChartOutlined, AuditOutlined, DatabaseOutlined } from '@ant-design/icons-vue'
+import { HomeOutlined, AccountBookOutlined, LineChartOutlined, PieChartOutlined, AuditOutlined, DatabaseOutlined, FundViewOutlined, LikeOutlined } from '@ant-design/icons-vue'
 import { Menu, MenuItem, type MenuProps } from 'ant-design-vue'
 
 export default {
@@ -34,6 +35,8 @@ export default {
     PieChartOutlined,
     AuditOutlined,
     DatabaseOutlined,
+    LikeOutlined,
+    FundViewOutlined,
 
     // Components
     Menu, MenuItem,
@@ -41,7 +44,7 @@ export default {
   data() {
     const menu_items: MenuProps['items'] = [
       {
-        label: '首页',
+        label: '楼盘词典',
         key: 'home',
         icon: () => h(HomeOutlined),
       }, {
@@ -78,6 +81,16 @@ export default {
         label: '网裕数据库',
         key: 'datasets',
         icon: () => h(DatabaseOutlined),
+      },
+      {
+        label: '案例库',
+        key: 'instances',
+        icon: () => h(FundViewOutlined)
+      },
+      {
+        label: '关于我们',
+        key: 'about',
+        icon: () => h(LikeOutlined)
       }
     ]
     return {
@@ -105,6 +118,8 @@ export default {
         ['housing-resource', 'thermal-map/housing-resource'],
         ['report', 'analysis-reports'],
         ['datasets', 'datasets'],
+        ['instances', 'instances-repository'],
+        ['about', 'about'],
       ]).get(e.key)
         }`)
     }
@@ -146,7 +161,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   // align-items: center;
-  margin-inline: @standard-margin;
+  margin-inline: auto;
   // flex: 1;
   width: 250px;
 
@@ -186,5 +201,4 @@ export default {
     }
   }
 }
-
 </style>
