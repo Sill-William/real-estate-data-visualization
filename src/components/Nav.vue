@@ -48,8 +48,11 @@ export default {
         label: '自动估值',
         key: 'valuation',
         icon: () => h(AccountBookOutlined),
-      },
-      {
+      }, {
+        label: '租赁估值',
+        key: 'lease-valuation',
+        icon: () => h(AccountBookOutlined),
+      }, {
         label: '价格指数',
         key: 'price-indices',
         icon: () => h(LineChartOutlined),
@@ -99,6 +102,7 @@ export default {
       this.$router.replace(`/databoard/${new Map([
         ['home', ''],
         ['valuation', 'auto-valuation'],
+        ['lease-valuation', 'lease-valuation'],
         ['price-indices', 'price-indices'],
         ['thermal-map', 'thermal-map'],
         ['volume-price', 'thermal-map/volume-price'],

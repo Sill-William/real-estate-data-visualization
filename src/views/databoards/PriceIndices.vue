@@ -40,7 +40,7 @@ export default {
     }> = ref({
       type: 0,
       city: '230100',
-      date_range: [dayjs().subtract(7, 'day'), dayjs()],
+      date_range: [dayjs().subtract(7, 'month'), dayjs()],
     })
     const type_options = ref([
       { label: '租聘', value: 0 },
@@ -71,10 +71,10 @@ export default {
       let dates = []
       let date = start
       while (date.isBefore(end)) {
-        dates.push(date.format('YYYY-MM-DD'))
-        date = date.add(1, 'day')
+        dates.push(date.format('YYYY-MM'))
+        date = date.add(1, 'month')
       }
-      dates.push(date.format('YYYY-MM-DD'))
+      dates.push(date.format('YYYY-MM'))
 
       return dates
     },

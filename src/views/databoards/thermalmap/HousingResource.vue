@@ -318,7 +318,7 @@ export default {
       map = new TMap.Map(document.getElementById("housing-resource-termalmap-main-view"), {
         center: center, // 设置地图中心点坐标
         zoom: 10, // 设置地图缩放级别
-        pitch: 43.5, // 设置俯仰角
+        pitch: 0, // 设置俯仰角
         rotation: 45, // 设置地图旋转角度
       })
       // console.log(TMap)
