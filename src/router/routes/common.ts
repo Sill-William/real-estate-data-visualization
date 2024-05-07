@@ -14,6 +14,12 @@ export const commonRoutes: RouteRecordRaw[] = [
     component: () => import("@/views/databoards/AutoValuation.vue"),
   },
   {
+    // -- 租赁估值
+    path: "lease-valuation/",
+    name: "DataBoard-LeaseValuation",
+    component: () => import("@/views/databoards/LeaseValuation.vue"),
+  },
+  {
     // -- 价格指数
     path: "price-indices/",
     name: "DataBoard-PriceIndices",
