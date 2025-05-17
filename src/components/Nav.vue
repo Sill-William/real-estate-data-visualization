@@ -90,11 +90,11 @@ export default {
         key: 'instances',
         icon: () => h(FundViewOutlined)
       },
-      {
-        label: '关于我们',
-        key: 'about',
-        icon: () => h(LikeOutlined)
-      }
+      // {
+      //   label: '关于我们',
+      //   key: 'about',
+      //   icon: () => h(LikeOutlined)
+      // }
     ]
     return {
       current_page: ['home'],
